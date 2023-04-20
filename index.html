@@ -25,8 +25,8 @@
     <nav class="nav">
         <ul class="ul">
             <li class="li"><a href="" class="a">Inicio</a></li>
-            <li class="li"><a href="" class="a">Series</a></li>
-            <li class="li"><a href="" class="a">Peliculas</a></li>
+            <li class="li"><a href="#series" class="a">Series</a></li>
+            <li class="li"><a href="#peliculas" class="a">Peliculas</a></li>
             <li class="li"><a href="" class="a">Buscar</a></li>
             <li class="li"><a href="" class="a">Contacto</a></li>
         </ul>
@@ -36,26 +36,61 @@
 
     <main>
 
-        <div class="carousel-container" id="carousel-container">
-            <!-- <button class="carousel-button prev">anterior;</button> -->
-            <!-- <div class="carousel"></div> -->
-            <!-- <button class="carousel-button next">siguiente;</button> -->
-          </div>
-          <div class="carousel-container" id="carousel-container2">
-            <!-- <button class="carousel-button prev">&#10094;</button> -->
-            <!-- <div class="carousel"></div> -->
-            <!-- <button class="carousel-button next">&#10095;</button> -->
-          </div>
+        <section id="peliculas">
+            <div>
+                <h3>Peliculas - Novedades en cartelera</h3>
+            </div>
+    
+            <div class="carousel-container" id="carousel-container">
+                <!-- <button class="carousel-button prev">anterior;</button> -->
+                <!-- <div class="carousel"></div> -->
+                <!-- <button class="carousel-button next">siguiente;</button> -->
+            </div>
+    
+            <div>
+                <h3>Peliculas - Tendencias</h3>
+            </div>
+    
+            <div class="carousel-container" id="carousel-container4">
+                <!-- <button class="carousel-button prev">anterior;</button> -->
+                <!-- <div class="carousel"></div> -->
+                <!-- <button class="carousel-button next">siguiente;</button> -->
+            </div>
+        </section>
+        
+        <section id="series">
+            <div>
+                <h3>Series - Mejor puntuado</h3>
+            </div>
+              <div class="carousel-container" id="carousel-container2">
+                <!-- <button class="carousel-button prev">&#10094;</button> -->
+                <!-- <div class="carousel"></div> -->
+                <!-- <button class="carousel-button next">&#10095;</button> -->
+              </div>
+    
+            <div>
+                <h3>Series - Tendencias</h3>
+            </div>
+            <div class="carousel-container" id="carousel-container3">
+                <!-- <button class="carousel-button prev">&#10094;</button> -->
+                <!-- <div class="carousel"></div> -->
+                <!-- <button class="carousel-button next">&#10095;</button> -->
+            </div>
+        </section>
+
+        
+
+
           
           <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
 
 
-
+        <a data-media-type="movie" data-id="" href=""></a>
 
          
 
            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <!--<div onclick="onYouTubeIframeAPIReady()" id="player">play</div>-->
+    <!-- <div onclick="onYouTubeIframeAPIReady()" id="player">play</div> -->
 
     <script>
 
@@ -72,6 +107,7 @@
           
 
     </main>
+    <script src="js/detalle.js"></script>
     <script src="js/js.js"></script>
 </body>
 </html>

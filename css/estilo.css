@@ -8,6 +8,7 @@ a{
   text-decoration: none;
   cursor: pointer;
   background: transparent;
+  color: #fff;
 }
 
 body {
@@ -85,7 +86,7 @@ main{
   margin: 0 .5em;
 }
 
-@media(max-width:500px){
+@media(max-width:768px){
   .header .button{
       display: block;
       cursor: pointer;
@@ -153,7 +154,7 @@ main{
     bottom: 0;
     background-color: #fff;
     padding: 0.5em;
-    max-height: 100%;
+    max-height: 80%;
     transform: translateY(125%);
     transition: transform 0.2s ease-in;
     color: blue;
@@ -304,3 +305,50 @@ main{
   }
 }
   
+
+/*----------Reparto----------*/
+.detalle-h3{
+  margin: 1em 0;
+  font-size: x-large;
+}
+.reparto-conteiner{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1em;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #fff hwb(0 100% 0% / 0);
+}
+.reparto-conteiner::-webkit-scrollbar{
+  height: 7px;
+   /* background-color: lightblue;  */
+}
+
+.reparto-conteiner::-webkit-scrollbar-thumb{
+  background-color: #fff;
+  border-radius: 100vmax;
+}
+.reparto-tarjeta{
+  width: 14em;
+}
+.reparto-img img{
+  border-radius: 5%;
+  max-width: 9em;
+}
+.reparto-actor{
+  padding: 0.25em;
+}
+.reparto-papel{
+  padding: 0.25em;
+}
+
+.contenedor-trailer{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+section[id]{
+  scroll-margin-top: 6em;
+}
