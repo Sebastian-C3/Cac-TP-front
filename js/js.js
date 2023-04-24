@@ -83,8 +83,8 @@ function mostrarLista(data){
     listaElement.classList.add('carousel');
     listaElement.setAttribute('id' , 'carousel')
    // listaElement.id.add('carousel');
-    listaElement.innerHTML = `<a data-media-type="movie" data-id="${id}" href="${URL_IMG+id}" id="movie-id"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
-                              <a data-media-type="movie" data-id="${id}" href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
+    listaElement.innerHTML = `<a data-media-type="movie"  href="detalle2.html?id=${id}" id="movie-id"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
+                              <a data-media-type="movie"  href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
                               <div class="overview">"${overview}"</div>
                               `
     lista.appendChild(listaElement);
