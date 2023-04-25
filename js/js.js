@@ -26,10 +26,10 @@ const API_TV_TREND = API_URL + 'trending/tv/day?api_key=099cdb38bba623d5a5296243
 const API_PELI_EST = API_URL + 'trending/movie/week?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX' //'movie/upcoming?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX&page=1&region=AR'
 //'trending/movie/week?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX'
 
-const lista = document.getElementById('carousel-container');
-const lista2 = document.getElementById('carousel-container4');
-const listaTv = document.getElementById('carousel-container2');
-const listaTv2 = document.getElementById('carousel-container3');
+const lista = document.getElementById('carrusel-container');
+const lista2 = document.getElementById('carrusel-container4');
+const listaTv = document.getElementById('carrusel-container2');
+const listaTv2 = document.getElementById('carrusel-container3');
 
 getPeliPop(API_PELI_POP);
 getTvPop(API_TV_POP);
@@ -60,7 +60,7 @@ function getVideos(url){
 function getPeliPop (url){
 
   fetch(url).then(res => res.json()).then(data =>{
-   // console.log(data);
+    console.log(data);
 
    mostrarLista(data.results);
   })
@@ -69,7 +69,7 @@ function getPeliPop (url){
 
 function getTvPop(url2){
   fetch(url2).then(res => res.json()).then(data2 =>{
-    //console.log(data2);
+    console.log(data2);
 
     mostrarListaTv(data2.results);
   })
@@ -78,13 +78,12 @@ function getTvPop(url2){
 function mostrarLista(data){
   lista.innerHTML = ``;
   data.forEach(element => {
-    var {title, poster_path, id,overview} = element;
+    var {title, poster_path, id, overview, media_type} = element;
     var listaElement = document.createElement('div');
-    listaElement.classList.add('carousel');
-    listaElement.setAttribute('id' , 'carousel')
-   // listaElement.id.add('carousel');
-    listaElement.innerHTML = `<a data-media-type="movie"  href="detalle2.html?id=${id}" id="movie-id"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
-                              <a data-media-type="movie"  href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
+    listaElement.classList.add('carrusel');
+    listaElement.setAttribute('id' , 'carrusel')
+    listaElement.innerHTML = `<a href="detalle2.html?type=movie&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
+                              <a href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
                               <div class="overview">"${overview}"</div>
                               `
     lista.appendChild(listaElement);
@@ -94,12 +93,12 @@ function mostrarLista(data){
 function mostrarListaEst(data){
   lista2.innerHTML = ``;
   data.forEach(element => {
-    var {title, poster_path, id,overview} = element;
+    var {title, poster_path, id,overview, media_type} = element;
     var listaElementEst = document.createElement('div');
-    listaElementEst.classList.add('carousel');
-    listaElementEst.innerHTML = `<a href="${URL_IMG+id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
-                              <a href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
-                              <div class="overview">"${overview}"</div>
+    listaElementEst.classList.add('carrusel');
+    listaElementEst.innerHTML = `<a href="detalle2.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
+                                 <a href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
+                                 <div class="overview">"${overview}"</div>
                               `
     lista2.appendChild(listaElementEst);
   });
@@ -110,11 +109,11 @@ function mostrarListaEst(data){
 function mostrarListaTv(data){
   listaTv.innerHTML = ``;
   data.forEach(element => {
-    var {name, poster_path, id, overview} = element;
+    var {name, poster_path, id, overview, media_type} = element;
     var listaTvElement = document.createElement('div');
-    listaTvElement.classList.add('carousel');
+    listaTvElement.classList.add('carrusel');
     listaTvElement.innerHTML = `
-                                <a href="${URL_IMG2+id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
+                                <a href="detalle2.html?type=tv&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
                                 <a href="${URL_IMG2+id}"><p class="titulo">${name}</p></a>
                                 <div class="overview">"${overview}"</div>
                                `
@@ -126,11 +125,11 @@ function mostrarListaTv(data){
 function mostrarListaTvTrend(data){
   listaTv2.innerHTML = ``;
   data.forEach(element => {
-    var {name, poster_path, id, overview} = element;
+    var {name, poster_path, id, overview, media_type} = element;
     var listaTVElTrend = document.createElement('div');
-    listaTVElTrend.classList.add('carousel');
+    listaTVElTrend.classList.add('carrusel');
     listaTVElTrend.innerHTML = `
-                                <a href="${URL_IMG2+id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
+                                <a href="detalle2.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
                                 <a href="${URL_IMG2+id}"><p class="titulo">${name}</p></a>
                                 <div class="overview">"${overview}"</div>
                                `

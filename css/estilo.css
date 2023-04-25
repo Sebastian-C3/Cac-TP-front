@@ -125,7 +125,7 @@ main{
 
 /*--------Carrusel---------*/
 
-.carousel-container {
+.carrusel-container {
     position: relative;
     width: 100%;
     overflow-y: hidden;
@@ -136,7 +136,7 @@ main{
     
   }
   
-  .carousel {
+  .carrusel {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -163,7 +163,7 @@ main{
     overflow:hidden;
   }
 
-  .carousel:hover .overview{
+  .carrusel:hover .overview{
     transform: translateY(0);
   }
 
@@ -181,12 +181,12 @@ main{
 
   /*------scrollbar------*/
 
-  .carousel-container::-webkit-scrollbar{
+  .carrusel-container::-webkit-scrollbar{
     height: 7px;
      /* background-color: lightblue;  */
   }
 
-  .carousel-container::-webkit-scrollbar-thumb{
+  .carrusel-container::-webkit-scrollbar-thumb{
     background-color: #fff;
     border-radius: 100vmax;
   }

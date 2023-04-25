@@ -34,11 +34,14 @@
 // obtén el parámetro "id" de la URL
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
+const mediaType = urlParams.get('type')
 
-// realiza una solicitud a la API utilizando fetch
+prueba(mediaType);
 
-
-  fetch('https://api.themoviedb.org/3/movie/' + id + '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX').then(res => res.json()).then(data =>{
+function prueba(tipo){
+  if(tipo == 'movie'){
+    console.log('peli');
+    fetch('https://api.themoviedb.org/3/' + mediaType + '/' + id + '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX').then(res => res.json()).then(data =>{
     console.log(data);
 
     detalle.innerHTML = ``;
@@ -63,6 +66,62 @@ elemento.innerHTML = `
 detalle.appendChild(elemento);
 
   })
+  }else{
+    console.log('serie');
+    fetch('https://api.themoviedb.org/3/' + mediaType + '/' + id + '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX').then(res => res.json()).then(data =>{
+    console.log(data);
+
+    detalle.innerHTML = ``;
+
+const elemento = document.createElement('div');
+elemento.classList.add('contenido');
+elemento.innerHTML = `    
+    <div class="cartel">
+        <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${data.poster_path}" alt="${data.name}">
+    </div>
+    <div class="titulo"><h2>${data.name}</h2></div>
+    <div class="genero">
+        <div class="generos">Accion, Suspenso, Crimen</div>
+        <div class="duracion">2h 50m</div>
+    </div>
+    
+    <div class="descripcion">
+        <h3 class="h3">Sinopsis</h3>
+        <p class="p">${data.overview}</p>
+    </div>
+    `;
+detalle.appendChild(elemento);
+
+  })
+  }
+}
+
+
+  // fetch('https://api.themoviedb.org/3/' + mediaType + '/' + id + '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX').then(res => res.json()).then(data =>{
+    // console.log(data);
+
+    // detalle.innerHTML = ``;
+
+// const elemento = document.createElement('div');
+// elemento.classList.add('contenido');
+// elemento.innerHTML = `    
+    // <div class="cartel">
+        // <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${data.poster_path}" alt="${data.title}">
+    // </div>
+    // <div class="titulo"><h2>${data.title}</h2></div>
+    // <div class="genero">
+        // <div class="generos">Accion, Suspenso, Crimen</div>
+        // <div class="duracion">2h 50m</div>
+    // </div>
+    
+    // <div class="descripcion">
+        // <h3 class="h3">Sinopsis</h3>
+        // <p class="p">${data.overview}</p>
+    // </div>
+    // `;
+// detalle.appendChild(elemento);
+
+  // })
 
 
 
