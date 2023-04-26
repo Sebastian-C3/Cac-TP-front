@@ -17,8 +17,9 @@ color: #fff;
 /*font-family: 'Montserrat', sans-serif;*/
 min-height: 100vh;
 display: flex;
-justify-content: center;
-/* align-items: center; */
+flex-direction: column;
+/* justify-content: center; */
+align-items: center; 
 /* align-items: center;  */
   /* max-width: 1000px; */
   /* position: relative; */
@@ -353,4 +354,13 @@ margin-top: 2em;
 
 section[id]{
 scroll-margin-top: 6em;
+}
+
+/*-----footer----*/
+
+.footer{
+display: flex;
+margin-top: 2em;
+background-color: black;
+width: 100%;
 }

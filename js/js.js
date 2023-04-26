@@ -1,14 +1,3 @@
-/*----------Menu----------*/
-
-const button = document.querySelector('.button')
-const nav    = document.querySelector('.nav')
-
-button.addEventListener('click',()=>{
-  nav.classList.toggle('activo')
-})
-
-const DETALLE2      ='detalle2.html'
-
 const API_KEY       = '099cdb38bba623d5a52962430eff4a2e';
 const API_URL       = 'https://api.themoviedb.org/3/';
 const API_PELI_POP  = API_URL + 'movie/now_playing?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX&page=1&region=ar';
@@ -78,11 +67,11 @@ function getTvPop(url2){
 function mostrarLista(data){
   lista.innerHTML = ``;
   data.forEach(element => {
-    var {title, poster_path, id, overview, media_type} = element;
-    var listaElement = document.createElement('div');
+    let {title, poster_path, id, overview, media_type} = element;
+    let listaElement = document.createElement('div');
     listaElement.classList.add('carrusel');
     listaElement.setAttribute('id' , 'carrusel')
-    listaElement.innerHTML = `<a href="detalle2.html?type=movie&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
+    listaElement.innerHTML = `<a href="detalle.html?type=movie&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
                               <a href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
                               <div class="overview">"${overview}"</div>
                               `
@@ -93,10 +82,10 @@ function mostrarLista(data){
 function mostrarListaEst(data){
   lista2.innerHTML = ``;
   data.forEach(element => {
-    var {title, poster_path, id,overview, media_type} = element;
-    var listaElementEst = document.createElement('div');
+    let {title, poster_path, id,overview, media_type} = element;
+    let listaElementEst = document.createElement('div');
     listaElementEst.classList.add('carrusel');
-    listaElementEst.innerHTML = `<a href="detalle2.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
+    listaElementEst.innerHTML = `<a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${title}></a>
                                  <a href="${URL_IMG+id}"><p class="titulo">${title}</p></a>
                                  <div class="overview">"${overview}"</div>
                               `
@@ -109,11 +98,11 @@ function mostrarListaEst(data){
 function mostrarListaTv(data){
   listaTv.innerHTML = ``;
   data.forEach(element => {
-    var {name, poster_path, id, overview, media_type} = element;
-    var listaTvElement = document.createElement('div');
+    let {name, poster_path, id, overview, media_type} = element;
+    let listaTvElement = document.createElement('div');
     listaTvElement.classList.add('carrusel');
     listaTvElement.innerHTML = `
-                                <a href="detalle2.html?type=tv&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
+                                <a href="detalle.html?type=tv&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
                                 <a href="${URL_IMG2+id}"><p class="titulo">${name}</p></a>
                                 <div class="overview">"${overview}"</div>
                                `
@@ -125,11 +114,11 @@ function mostrarListaTv(data){
 function mostrarListaTvTrend(data){
   listaTv2.innerHTML = ``;
   data.forEach(element => {
-    var {name, poster_path, id, overview, media_type} = element;
-    var listaTVElTrend = document.createElement('div');
+    let {name, poster_path, id, overview, media_type} = element;
+    let listaTVElTrend = document.createElement('div');
     listaTVElTrend.classList.add('carrusel');
     listaTVElTrend.innerHTML = `
-                                <a href="detalle2.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
+                                <a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA+poster_path} alt=${name}></a>
                                 <a href="${URL_IMG2+id}"><p class="titulo">${name}</p></a>
                                 <div class="overview">"${overview}"</div>
                                `
@@ -146,18 +135,20 @@ function mostrarListaTvTrend(data){
 
 
 
+
+
 //////yt
 
 // 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
+let tag = document.createElement('script');
 
 tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
+let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
-var player;
+let player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
@@ -181,7 +172,7 @@ function onPlayerReady(event) {
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
-var done = false;
+let done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
     setTimeout(stopVideo, 6000);
