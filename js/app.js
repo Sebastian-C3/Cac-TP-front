@@ -10,8 +10,8 @@ document.getElementById("header").innerHTML = `
     <nav class="nav">
         <ul class="ul">
             <li class="li"><a href="index.html" class="a">Inicio</a></li>
-            <li class="li"><a href="#series" class="a">Series</a></li>
-            <li class="li"><a href="#peliculas" class="a">Peliculas</a></li>
+            <li class="li"><a href="index.html#series" class="a">Series</a></li>
+            <li class="li"><a href="index.html#peliculas" class="a">Peliculas</a></li>
             <li class="li"><a href="" class="a">Buscar</a></li>
             <li class="li"><a href="" class="a">Contacto</a></li>
         </ul>

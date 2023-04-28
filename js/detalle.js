@@ -1,4 +1,11 @@
+const API_KEY = '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX';
+const API_URL = 'https://api.themoviedb.org/3/';
+const API_IMG = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2';
+const IMG_CAST = 'https://www.themoviedb.org/t/p/w138_and_h175_face'
+
 const detalle = document.getElementById('contenido-principal');
+const reparto = document.getElementById('reparto-conteiner');
+const trailer = document.getElementById('contenedor-trailer');
 
 
 // obtén el parámetro "id" de la URL
@@ -6,26 +13,42 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 const mediaType = urlParams.get('type')
 
-prueba(mediaType);
+tipoMedia(mediaType);
 
-function prueba(tipo){
-  if(tipo == 'movie'){
+
+
+function tipoMedia(tipo) {
+  if (tipo == 'movie') {
     console.log('peli');
-    fetch('https://api.themoviedb.org/3/' + mediaType + '/' + id + '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX').then(res => res.json()).then(data =>{
-    console.log(data);
+    fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
+     // console.log(data);
+      mostrarPeli(data);
+    })
 
-    detalle.innerHTML = ``;
+    
+  } else {
+    console.log('serie');
+    fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
+      //console.log(data);
+      mostrarSerie(data);
 
-const elemento = document.createElement('div');
-elemento.classList.add('contenido');
-elemento.innerHTML = `    
+    })
+  }
+}
+
+function mostrarPeli(data) {
+  console.log(data);
+  detalle.innerHTML = ``;
+  const elemento = document.createElement('div');
+  elemento.classList.add('contenido');
+  elemento.innerHTML = `    
     <div class="cartel">
-        <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${data.poster_path}" alt="${data.title}">
+        <img src="${API_IMG}${data.poster_path}" alt="${data.title}">
     </div>
     <div class="titulo"><h2>${data.title}</h2></div>
     <div class="genero">
-        <div class="generos">Accion, Suspenso, Crimen</div>
-        <div class="duracion">2h 50m</div>
+        <div class="generos">${getGeneros(data.genres)}</div>
+        <div class="duracion">${getDuracion(data.runtime)}</div>
     </div>
     
     <div class="descripcion">
@@ -33,26 +56,21 @@ elemento.innerHTML = `
         <p class="p">${data.overview}</p>
     </div>
     `;
-detalle.appendChild(elemento);
+  detalle.appendChild(elemento);
+}
 
-  })
-  }else{
-    console.log('serie');
-    fetch('https://api.themoviedb.org/3/' + mediaType + '/' + id + '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX').then(res => res.json()).then(data =>{
-    console.log(data);
+function mostrarSerie(data){
+  detalle.innerHTML = ``;
 
-    detalle.innerHTML = ``;
-
-const elemento = document.createElement('div');
-elemento.classList.add('contenido');
-elemento.innerHTML = `    
+      const elemento = document.createElement('div');
+      elemento.classList.add('contenido');
+      elemento.innerHTML = `    
     <div class="cartel">
-        <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${data.poster_path}" alt="${data.name}">
+        <img src="${API_IMG}${data.poster_path}" alt="${data.name}">
     </div>
     <div class="titulo"><h2>${data.name}</h2></div>
     <div class="genero">
-        <div class="generos">Accion, Suspenso, Crimen</div>
-        <div class="duracion">2h 50m</div>
+        <div class="generos">${getGeneros(data.genres)}</div>
     </div>
     
     <div class="descripcion">
@@ -60,56 +78,56 @@ elemento.innerHTML = `
         <p class="p">${data.overview}</p>
     </div>
     `;
-detalle.appendChild(elemento);
+      detalle.appendChild(elemento);
+}
 
-  })
+function getGeneros(gen) {
+  //console.log(gen);
+  let generos = gen.map(gen => { return gen.name })
+  console.log(generos);
+  return generos;
+}
+
+function getDuracion(minutos) {
+  console.log(minutos);
+  let horas = Math.floor(minutos / 60);
+  minutos = minutos % 60;
+  return horas + "h" + " " + minutos + "m"
+}
+
+fetch(API_URL+mediaType+'/'+id+'/credits'+API_KEY).then(res => res.json()).then(dataCast => {
+      //console.log(dataCast);
+      mostrarReparto(dataCast.cast);
+})
+
+function mostrarReparto(dataCast){
+  console.log(dataCast);
+
+  for (let i = 0; i < dataCast.length; i++) {
+    const personaje = dataCast[i].character;
+    const actor = dataCast[i].name;
+    const imagen = dataCast[i].profile_path;
+    let divReparto = document.createElement('div');
+    divReparto.classList.add('reparto-tarjeta');
+    divReparto.innerHTML = `
+    <div class="reparto-img"><img src="${IMG_CAST}${imagen}" alt="${actor}"></div>
+    <div class="reparto-actor"><p class="p-actor">${actor}</p></div>
+    <div class="reparto-papel"><p>${personaje}</p></div>
+    `
+    reparto.appendChild(divReparto);
   }
 }
 
+fetch(API_URL+mediaType+'/'+id+'/videos'+API_KEY).then(res => res.json()).then(dataTrailer =>{
+
+  let trailerKey = dataTrailer.results.find(dataTrailer => dataTrailer.type === 'Trailer')
+  console.log(trailerKey.key)
+  let divTrailer = document.createElement('div');
+  divTrailer.classList.add('trailer');
+  divTrailer.innerHTML = `
+  <div id="player"><iframe width="720" height="405" src="https://www.youtube.com/embed/${trailerKey.key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  `
+  trailer.appendChild(divTrailer);
+})
 
 
-//////yt
-
-// 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'L0anWmmd8TI',
-    playerVars: {
-      'playsinline': 1
-    },
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
-}
