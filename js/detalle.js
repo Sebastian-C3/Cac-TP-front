@@ -19,7 +19,7 @@ tipoMedia(mediaType);
 
 function tipoMedia(tipo) {
   if (tipo == 'movie') {
-    console.log('peli');
+    //console.log('peli');
     fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
      // console.log(data);
       mostrarPeli(data);
@@ -27,7 +27,7 @@ function tipoMedia(tipo) {
 
     
   } else {
-    console.log('serie');
+    //console.log('serie');
     fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
       //console.log(data);
       mostrarSerie(data);
@@ -37,7 +37,7 @@ function tipoMedia(tipo) {
 }
 
 function mostrarPeli(data) {
-  console.log(data);
+  //console.log(data);
   detalle.innerHTML = ``;
   const elemento = document.createElement('div');
   elemento.classList.add('contenido');
@@ -47,8 +47,8 @@ function mostrarPeli(data) {
     </div>
     <div class="titulo"><h2>${data.title}</h2></div>
     <div class="genero">
-        <div class="generos">${getGeneros(data.genres)}</div>
-        <div class="duracion">${getDuracion(data.runtime)}</div>
+        <div class="generos"><p>${getGeneros(data.genres)}</p></div>
+        <div class="duracion"><p>${getDuracion(data.runtime)}</p></div>
     </div>
     
     <div class="descripcion">
@@ -84,12 +84,12 @@ function mostrarSerie(data){
 function getGeneros(gen) {
   //console.log(gen);
   let generos = gen.map(gen => { return gen.name })
-  console.log(generos);
+ //console.log(generos);
   return generos;
 }
 
 function getDuracion(minutos) {
-  console.log(minutos);
+  //console.log(minutos);
   let horas = Math.floor(minutos / 60);
   minutos = minutos % 60;
   return horas + "h" + " " + minutos + "m"
@@ -104,15 +104,15 @@ function mostrarReparto(dataCast){
   console.log(dataCast);
 
   for (let i = 0; i < dataCast.length; i++) {
-    const personaje = dataCast[i].character;
-    const actor = dataCast[i].name;
-    const imagen = dataCast[i].profile_path;
+    //const personaje = dataCast[i].character;
+    //const actor = dataCast[i].name;
+    //const imagen = dataCast[i].profile_path;
     let divReparto = document.createElement('div');
     divReparto.classList.add('reparto-tarjeta');
     divReparto.innerHTML = `
-    <div class="reparto-img"><img src="${IMG_CAST}${imagen}" alt="${actor}"></div>
-    <div class="reparto-actor"><p class="p-actor">${actor}</p></div>
-    <div class="reparto-papel"><p>${personaje}</p></div>
+    <div class="reparto-img"><img src="${IMG_CAST}${dataCast[i].profile_path}" alt="${dataCast[i].name}"></div>
+    <div class="reparto-actor"><p class="p-actor">${dataCast[i].name}</p></div>
+    <div class="reparto-papel"><p>${dataCast[i].character}</p></div>
     `
     reparto.appendChild(divReparto);
   }
@@ -121,7 +121,7 @@ function mostrarReparto(dataCast){
 fetch(API_URL+mediaType+'/'+id+'/videos'+API_KEY).then(res => res.json()).then(dataTrailer =>{
 
   let trailerKey = dataTrailer.results.find(dataTrailer => dataTrailer.type === 'Trailer')
-  console.log(trailerKey.key)
+  //console.log(trailerKey.key)
   let divTrailer = document.createElement('div');
   divTrailer.classList.add('trailer');
   divTrailer.innerHTML = `

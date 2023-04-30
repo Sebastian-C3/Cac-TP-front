@@ -35,7 +35,7 @@ function getTvTrend(url) {
 function getPeliPop(url) {
 
   fetch(url).then(res => res.json()).then(data => {
-    console.log(data);
+    //console.log(data);
 
     mostrarLista(data.results);
   })
@@ -58,8 +58,8 @@ function mostrarLista(data) {
     listaElement.classList.add('carrusel');
     listaElement.setAttribute('id', 'carrusel')
     listaElement.innerHTML = `<a href="detalle.html?type=movie&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${title}></a>
-                              <a href="detalle.html?type=movie&id=${id}"><p class="titulo">${title}</p></a>
-                              <a href="detalle.html?type=movie&id=${id}"><div class="overview">"${overview}"</div></a>
+                              <a href="detalle.html?type=movie&id=${id}"><p class="carrusel-titulo">${title}</p></a>
+                              <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                               `
     lista.appendChild(listaElement);
   });
@@ -72,8 +72,8 @@ function mostrarListaEst(data) {
     let listaElementEst = document.createElement('div');
     listaElementEst.classList.add('carrusel');
     listaElementEst.innerHTML = `<a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${title}></a>
-                                 <a href="detalle.html?type=movie&id=${id}"><p class="titulo">${title}</p></a>
-                                 <a href="detalle.html?type=movie&id=${id}"><div class="overview">"${overview}"</div></a>
+                                 <a href="detalle.html?type=movie&id=${id}"><p class="carrusel-titulo">${title}</p></a>
+                                 <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                               `
     lista2.appendChild(listaElementEst);
   });
@@ -89,8 +89,8 @@ function mostrarListaTv(data) {
     listaTvElement.classList.add('carrusel');
     listaTvElement.innerHTML = `
                                 <a href="detalle.html?type=tv&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${name}></a>
-                                <a href="detalle.html?type=tv&id=${id}"><p class="titulo">${name}</p></a>
-                                <a href="detalle.html?type=movie&id=${id}"><div class="overview">"${overview}"</div></a>
+                                <a href="detalle.html?type=tv&id=${id}"><p class="carrusel-titulo">${name}</p></a>
+                                <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                                `
     listaTv.appendChild(listaTvElement);
 
@@ -105,66 +105,9 @@ function mostrarListaTvTrend(data) {
     listaTVElTrend.classList.add('carrusel');
     listaTVElTrend.innerHTML = `
                                 <a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${name}></a>
-                                <a href="detalle.html?type=tv&id=${id}"><p class="titulo">${name}</p></a>
-                                <a href="detalle.html?type=movie&id=${id}"><div class="overview">"${overview}"</div></a>
+                                <a href="detalle.html?type=tv&id=${id}"><p class="carrusel-titulo">${name}</p></a>
+                                <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                                `
     listaTv2.appendChild(listaTVElTrend);
   })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-//////yt
-
-// 2. This code loads the IFrame Player API code asynchronously.
-let tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-let firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-let player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'L0anWmmd8TI',
-    playerVars: {
-      'playsinline': 1
-    },
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-let done = false;
-function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
 }
