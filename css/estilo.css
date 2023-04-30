@@ -345,7 +345,7 @@ section[id] {
   }
 
   .header .nav.activo {
-    height: 250px;
+    height: 300px;
     pointer-events: auto;
   }
 
