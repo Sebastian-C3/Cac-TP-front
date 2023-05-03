@@ -1,12 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="https://kit.fontawesome.com/1095b3c2ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+
+    <title>Pelis para todos</title>
 </head>
+
 <body>
+
+    <header class="header" id="header"> </header>
+
+    <main>
+
+        <section class="buscador-conteiner">
+            <div class="form">
+                <form id="form">
+                    <input type="text" placeholder="Buscar series y peliculas..." id="buscador" class="buscador">
+                </form>
+            </div>
+            
+
+            <section class="radio-btn">
+                <div class="radio-peli">
+                <input type="radio" name="select" id="peliculas" value="peliculas" checked>
+                <label for="peliculas">Peliculas</label>
+                </div>
     
+                <div class="radio-tv">
+                <input type="radio" name="select" id="series" value="series">
+                <label for="series">Series</label>
+                </div>
+                
+    
+            </section>
+            
+        </section>
+
+        <!-- <section class="radio-btn">
+            <div class="radio-peli">
+            <input type="radio" name="select" id="peliculas" value="peliculas" checked>
+            <label for="peliculas">Peliculas</label>
+            </div>
+
+            <div class="radio-tv">
+            <input type="radio" name="select" id="series" value="series">
+            <label for="series">Series</label>
+            </div>
+            
+
+        </section> -->
+        
+
+        <section class="resultados" id="resultados">
+            <!-- <div class="resultado-tarjeta">
+                <div class="resultado-img">
+                    <a href=""><img src="https://www.themoviedb.org/t/p/w94_and_h141_bestv2/ucNtkZfpZ6KgxqPo039nN4LAyFR.jpg" alt="avatar" ></a>
+                </div>
+                <div>
+                    <div class="resultado-titulo">
+                        <a href="">Avatar: La leyenda de Aang</a>
+                    </div>
+                    <div class="resultado-descrip">
+                        <p>La historia transcurre en un mundo de gente principalmente asiática (el estilo de vida en la serie se basa en la primera mitad del siglo XIX), donde predominan las artes marciales y la </p>
+                    </div>
+                </div> 
+            </div>
+
+            <div class="resultado-tarjeta">
+                <div class="resultado-img">
+                    <a href=""><img src="https://www.themoviedb.org/t/p/w94_and_h141_bestv2/ucNtkZfpZ6KgxqPo039nN4LAyFR.jpg" alt="avatar" ></a>
+                </div>
+                <div>
+                    <div class="resultado-titulo">
+                        <a href="">Avatar: La leyenda de Aang</a>
+                    </div>
+                    <div class="resultado-descrip">
+                        <p>La historia transcurre en un mundo de gente principalmente asiática (el estilo de vida en la serie se basa en la primera mitad del siglo XIX), donde predominan las artes marciales y la </p>
+                    </div>
+                </div> 
+            </div> -->
+        </section>
+
+    </main>
+
+
+    <footer class="footer" id="footer">
+
+
+
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/buscar.js"></script>
 </body>
+
 </html>
