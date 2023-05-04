@@ -57,7 +57,7 @@ function mostrarLista(data) {
     let listaElement = document.createElement('div');
     listaElement.classList.add('carrusel');
     listaElement.setAttribute('id', 'carrusel')
-    listaElement.innerHTML = `<a href="detalle.html?type=movie&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${title}></a>
+    listaElement.innerHTML = `<a href="detalle.html?type=movie&id=${id}"><img class="poster" src=${imagenTarjeta(IMG_LISTA, poster_path)} alt=${title}></a>
                               <a href="detalle.html?type=movie&id=${id}"><p class="carrusel-titulo">${title}</p></a>
                               <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                               `
@@ -71,7 +71,7 @@ function mostrarListaEst(data) {
     let { title, poster_path, id, overview, media_type } = element;
     let listaElementEst = document.createElement('div');
     listaElementEst.classList.add('carrusel');
-    listaElementEst.innerHTML = `<a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${title}></a>
+    listaElementEst.innerHTML = `<a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${imagenTarjeta(IMG_LISTA, poster_path)} alt=${title}></a>
                                  <a href="detalle.html?type=movie&id=${id}"><p class="carrusel-titulo">${title}</p></a>
                                  <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                               `
@@ -88,7 +88,7 @@ function mostrarListaTv(data) {
     let listaTvElement = document.createElement('div');
     listaTvElement.classList.add('carrusel');
     listaTvElement.innerHTML = `
-                                <a href="detalle.html?type=tv&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${name}></a>
+                                <a href="detalle.html?type=tv&id=${id}"><img class="poster" src=${imagenTarjeta(IMG_LISTA, poster_path)} alt=${name}></a>
                                 <a href="detalle.html?type=tv&id=${id}"><p class="carrusel-titulo">${name}</p></a>
                                 <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                                `
@@ -104,10 +104,19 @@ function mostrarListaTvTrend(data) {
     let listaTVElTrend = document.createElement('div');
     listaTVElTrend.classList.add('carrusel');
     listaTVElTrend.innerHTML = `
-                                <a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${IMG_LISTA + poster_path} alt=${name}></a>
+                                <a href="detalle.html?type=${media_type}&id=${id}"><img class="poster" src=${imagenTarjeta(IMG_LISTA, poster_path)} alt=${name}></a>
                                 <a href="detalle.html?type=tv&id=${id}"><p class="carrusel-titulo">${name}</p></a>
                                 <a href="detalle.html?type=movie&id=${id}"><div class="overview"><p>"${overview}"</p></div></a>
                                `
     listaTv2.appendChild(listaTVElTrend);
   })
+}
+
+function imagenTarjeta(img, poster_path){
+  let desconocido = "img/desconocido-carrusel.png";
+  if(poster_path===null){
+    return desconocido
+  }else{
+    return img+poster_path
+  }
 }

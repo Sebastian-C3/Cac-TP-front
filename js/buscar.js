@@ -6,6 +6,7 @@ const series = document.getElementById('series')
 
 const API_CON = ' https://api.themoviedb.org/3/search/';
 const API_KEY = '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX&query=';
+const IMG_BUSC = 'https://image.tmdb.org/t/p/w94_and_h141_bestv2';
 const API_MOV = 'movie';
 const API_TV = 'tv';
 
@@ -48,7 +49,7 @@ function mostrarResultados(data) {
          elemntoBusc.classList.add('resultado-tarjeta');
          elemntoBusc.innerHTML = `
                  <div class="resultado-img">
-                     <a href="detalle.html?type=${tipoMedia(title,name)}&id=${id}"><img src="https://image.tmdb.org/t/p/w94_and_h141_bestv2${poster_path}" alt="${tipoTitulo(title,name)}" ></a>
+                     <a href="detalle.html?type=${tipoMedia(title,name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC,poster_path)}" alt="${tipoTitulo(title,name)}" ></a>
                  </div>
                  <div>
                      <div class="resultado-titulo">
@@ -78,3 +79,12 @@ function tipoMedia(title,name){
         return 'tv'
     }
 }
+
+function imagenTarjeta(img, poster_path){
+    let desconocido = "img/tarjeta.png";
+    if(poster_path===null){
+      return desconocido
+    }else{
+      return img+poster_path
+    }
+  }

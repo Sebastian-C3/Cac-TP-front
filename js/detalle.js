@@ -29,7 +29,7 @@ function tipoMedia(tipo) {
   } else {
     //console.log('serie');
     fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
-      //console.log(data);
+      console.log(data);
       mostrarSerie(data);
 
     })
@@ -43,7 +43,7 @@ function mostrarPeli(data) {
   elemento.classList.add('contenido');
   elemento.innerHTML = `    
     <div class="cartel">
-        <img src="${API_IMG}${data.poster_path}" alt="${data.title}">
+        <img src="${imagenTarjeta(API_IMG,data.poster_path)}" alt="${data.title}">
     </div>
     <div class="titulo"><h2>${data.title}</h2></div>
     <div class="genero">
@@ -66,7 +66,7 @@ function mostrarSerie(data){
       elemento.classList.add('contenido');
       elemento.innerHTML = `    
     <div class="cartel">
-        <img src="${API_IMG}${data.poster_path}" alt="${data.name}">
+        <img src="${imagenTarjeta(API_IMG,data.poster_path)}" alt="${data.name}">
     </div>
     <div class="titulo"><h2>${data.name}</h2></div>
     <div class="genero">
@@ -110,7 +110,7 @@ function mostrarReparto(dataCast){
     let divReparto = document.createElement('div');
     divReparto.classList.add('reparto-tarjeta');
     divReparto.innerHTML = `
-    <div class="reparto-img"><img src="${IMG_CAST}${dataCast[i].profile_path}" alt="${dataCast[i].name}"></div>
+    <div class="reparto-img"><img src="${imagenTarjeta(IMG_CAST,dataCast[i].profile_path)}" alt="${dataCast[i].name}"></div>
     <div class="reparto-actor"><p class="p-actor">${dataCast[i].name}</p></div>
     <div class="reparto-papel"><p>${dataCast[i].character}</p></div>
     `
@@ -131,3 +131,11 @@ fetch(API_URL+mediaType+'/'+id+'/videos'+API_KEY).then(res => res.json()).then(d
 })
 
 
+function imagenTarjeta(img,profile_path){
+  let desconocido = "img/unknown.png";
+  if(profile_path===null){
+    return desconocido
+  }else{
+    return img+profile_path
+  }
+}

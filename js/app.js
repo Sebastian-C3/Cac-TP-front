@@ -1,4 +1,4 @@
-///////////header///////////
+/*----------header----------*/
 
 document.getElementById("header").innerHTML = `
 <a href="index.html"><h1 class="h1">Pelis para todos</h1></a>
@@ -28,11 +28,12 @@ button.addEventListener('click',()=>{
 })
 
 
-///////////footer///////////
+/*----------footer----------*/
 
 document.getElementById("footer").innerHTML = `
 <p>Pelis para todos</p>
 
 <p>Derechos&reservados</p>
-    
+
+<p>Powered by <a href="https://www.themoviedb.org/"><img class="img-tmdb" src="img/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB"></a></p>
 `;

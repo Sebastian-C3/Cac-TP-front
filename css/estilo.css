@@ -62,7 +62,7 @@ main {
   padding: 0.5em 0.5em;
   fill: transparent;
   border-radius: 25%;
-  color: lightcoral;
+  color: rgb(0,8,120,1)
 
 }
 
@@ -93,7 +93,7 @@ main {
 .subtitulo h3{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .carrusel-container {
@@ -143,6 +143,7 @@ main {
 .carrusel .carrusel-titulo { 
   font-weight: 500;
   color: white;
+  font-size: 1.1em;
 }
 
 .poster {
@@ -180,6 +181,9 @@ main {
   grid-row-start: 1;
   align-self: center;
   margin-left: 1em;
+}
+.titulo h2{
+  font-size: 2em;
 }
 
 .cartel {
@@ -268,7 +272,8 @@ width: 140px;
 
 .reparto-img img {
   border-radius: 5%;
-  max-width: 9em;
+  width: 140px;
+  min-height: 177px;
 }
 
 .reparto-actor {
@@ -360,6 +365,7 @@ section[id] {
 
 .resultado-img img{
   height: 141px;
+  width: 94px;
 }
 
 .resultado-titulo{
@@ -393,6 +399,10 @@ section[id] {
   width: 100%;
   bottom: 0;
   position: static;
+}
+
+.img-tmdb{
+  height: 1em;
 }
 
 
@@ -480,6 +490,7 @@ section[id] {
 
   .titulo h2 {
     text-align: center;
+    font-size: 2.5em;
   }
 
   .contenido .genero {
