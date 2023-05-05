@@ -3,7 +3,6 @@ const buscador = document.getElementById('buscador');
 const resultados = document.getElementById('resultados');
 const peliculas = document.getElementById('peliculas')
 const series = document.getElementById('series')
-
 const API_CON = ' https://api.themoviedb.org/3/search/';
 const API_KEY = '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX&query=';
 const IMG_BUSC = 'https://image.tmdb.org/t/p/w94_and_h141_bestv2';
@@ -15,53 +14,78 @@ form.addEventListener('submit', (e) => {
 
     let terminoBusc = buscador.value;
 
-    console.log(terminoBusc);
-
     if (terminoBusc) {
-        if(peliculas.checked){
-            console.log('Peliculas')
-            fetch(API_CON + API_MOV + API_KEY + terminoBusc).then(res => res.json()).then(data => {
-                // console.log(data)
-                mostrarResultados(data.results);
+        if (peliculas.checked) {
+            const urlPel = API_CON + API_MOV + API_KEY + terminoBusc
+            fetch(urlPel).then(res => res.json()).then(data => {
+                mostrarBusqueda(data, urlPel);
             })
-
-        }else if(series.checked){
-            console.log('Series')
-            fetch(API_CON + API_TV + API_KEY + terminoBusc).then(res => res.json()).then(data => {
-                // console.log(data)
-                mostrarResultados(data.results);
+        } else if (series.checked) {
+            const urlTV = API_CON + API_TV + API_KEY + terminoBusc
+            fetch(urlTV).then(res => res.json()).then(data => {
+                mostrarBusqueda(data, urlTV);
             })
-        }  
+        }
     }
-})
+});
 
+function mostrarBusqueda(data, url) {
+    let pagAct = data.page
+    let cantPag = data.total_pages;
+
+    mostrarResultados(data.results)
+    if (cantPag > 1) {
+        for (let index = pagAct + 1; index <= cantPag; index++) {
+            let divBuscador = document.createElement('div');
+            divBuscador.setAttribute('id', 'resultado-tarjetas')
+            resultados.append(divBuscador)
+            fetch(url + '&page=' + index).then(res => res.json()).then(data => {
+                data.results.forEach(element => {
+                    let { id, title, name, media_type, poster_path, overview } = element
+                    let elemntoBusc = document.createElement('div');
+                    elemntoBusc.classList.add('resultado-tarjeta');
+                    elemntoBusc.innerHTML = `
+                        <div class="resultado-img">
+                            <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC, poster_path)}" alt="${tipoTitulo(title, name)}" ></a>
+                        </div>
+                        <div>
+                            <div class="resultado-titulo">
+                                <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}">${tipoTitulo(title, name)}</a>
+                            </div>
+                            <div class="resultado-descrip">
+                                <p>${overview}</p>
+                            </div>
+                        </div> 
+                    `
+                    divBuscador.append(elemntoBusc);
+                });
+            })
+        }
+    }
+}
 
 function mostrarResultados(data) {
     resultados.innerHTML = ``;
-    //const resultado = data;
-    console.log(data)
-    console.log(data.page)
-    console.log(data.total_pages)
 
-     data.forEach(element => {
-         let { id, title, name, media_type, poster_path, overview } = element
-         let elemntoBusc = document.createElement('div');
-         elemntoBusc.classList.add('resultado-tarjeta');
-         elemntoBusc.innerHTML = `
-                 <div class="resultado-img">
-                     <a href="detalle.html?type=${tipoMedia(title,name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC,poster_path)}" alt="${tipoTitulo(title,name)}" ></a>
-                 </div>
-                 <div>
-                     <div class="resultado-titulo">
-                         <a href="detalle.html?type=${tipoMedia(title,name)}&id=${id}">${tipoTitulo(title,name)}</a>
-                     </div>
-                     <div class="resultado-descrip">
-                         <p>${overview}</p>
-                     </div>
-                 </div> 
-         `
-         resultados.appendChild(elemntoBusc);
-     });
+    data.forEach(element => {
+        let { id, title, name, media_type, poster_path, overview } = element
+        let elemntoBusc = document.createElement('div');
+        elemntoBusc.classList.add('resultado-tarjeta');
+        elemntoBusc.innerHTML = `
+                <div class="resultado-img">
+                    <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC, poster_path)}" alt="${tipoTitulo(title, name)}" ></a>
+                </div>
+                <div>
+                    <div class="resultado-titulo">
+                        <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}">${tipoTitulo(title, name)}</a>
+                    </div>
+                    <div class="resultado-descrip">
+                        <p>${overview}</p>
+                    </div>
+                </div> 
+            `
+        resultados.append(elemntoBusc);
+    });
 }
 
 function tipoTitulo(title, name) {
@@ -72,19 +96,21 @@ function tipoTitulo(title, name) {
     }
 }
 
-function tipoMedia(title,name){
-    if (title){
+function tipoMedia(title, name) {
+    if (title) {
         return 'movie'
-    }else{
+    } else {
         return 'tv'
     }
 }
 
-function imagenTarjeta(img, poster_path){
+function imagenTarjeta(img, poster_path) {
     let desconocido = "img/tarjeta.png";
-    if(poster_path===null){
-      return desconocido
-    }else{
-      return img+poster_path
+    if (poster_path === null) {
+        return desconocido
+    } else if (!poster_path) {
+        return desconocido
+    } else {
+        return img + poster_path
     }
-  }
+}
