@@ -297,6 +297,7 @@ section[id] {
 .buscador-conteiner{
   background-color: transparent;
   display: flex;
+  flex-direction: column;
 }
 
 .form{
@@ -325,7 +326,7 @@ section[id] {
 
 .radio-btn{
   display: flex;
-  margin: 0.5em 0; 
+  margin: 1em auto; 
 }
 
 .radio-peli{
@@ -350,12 +351,12 @@ section[id] {
 }
 
 .resultado-img{
-  height: 141px;
+  height: 160px;
 }
 
 .resultado-img img{
-  height: 141px;
-  width: 94px;
+  height: 160px;
+  width: 105px;
 }
 
 .resultado-titulo{
@@ -501,8 +502,6 @@ section[id] {
     width: 80%;
     margin: auto;
   }
-
-
 }
 
 @media (max-width: 525px) {
