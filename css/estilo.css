@@ -206,10 +206,9 @@ main {
 
 }
 
-/* .generos{
-padding: 0 0.5em;
-gap: 0.5em;
-} */
+.generos{
+  text-align: center;
+  } 
 /* .duracion{} */
 
 .descripcion {
