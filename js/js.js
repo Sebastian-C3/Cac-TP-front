@@ -4,9 +4,7 @@ const API_PELI_POP = API_URL + 'movie/now_playing' + API_KEY + '&page=1&region=a
 const API_TV_POP = API_URL + 'tv/top_rated' + API_KEY;
 const IMG_LISTA = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2';
 const API_TV_TREND = API_URL + 'trending/tv/day' + API_KEY;
-const API_PELI_EST = API_URL + 'trending/movie/week' + API_KEY //'movie/upcoming?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX&page=1&region=AR'
-//'trending/movie/week?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX'
-
+const API_PELI_EST = API_URL + 'trending/movie/week' + API_KEY;
 const lista = document.getElementById('carrusel-container');
 const lista2 = document.getElementById('carrusel-container4');
 const listaTv = document.getElementById('carrusel-container2');
@@ -19,14 +17,12 @@ getPeliEst(API_PELI_EST);//tendencias
 
 function getPeliEst(url) {
   fetch(url).then(res => res.json()).then(data => {
-    //console.log(data);
     mostrarListaEst(data.results);
   })
 }
 
 function getTvTrend(url) {
   fetch(url).then(res => res.json()).then(data => {
-    //console.log(data);
     mostrarListaTvTrend(data.results);
   })
 }
@@ -35,8 +31,6 @@ function getTvTrend(url) {
 function getPeliPop(url) {
 
   fetch(url).then(res => res.json()).then(data => {
-    //console.log(data);
-
     mostrarLista(data.results);
   })
 
@@ -44,8 +38,6 @@ function getPeliPop(url) {
 
 function getTvPop(url2) {
   fetch(url2).then(res => res.json()).then(data2 => {
-    //console.log(data2);
-
     mostrarListaTv(data2.results);
   })
 }

@@ -2,11 +2,9 @@ const API_KEY = '?api_key=099cdb38bba623d5a52962430eff4a2e&language=es-MX';
 const API_URL = 'https://api.themoviedb.org/3/';
 const API_IMG = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2';
 const IMG_CAST = 'https://www.themoviedb.org/t/p/w138_and_h175_face'
-
 const detalle = document.getElementById('contenido-principal');
 const reparto = document.getElementById('reparto-conteiner');
 const trailer = document.getElementById('contenedor-trailer');
-
 
 // obtén el parámetro "id" de la URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -15,21 +13,14 @@ const mediaType = urlParams.get('type')
 
 tipoMedia(mediaType);
 
-
-
 function tipoMedia(tipo) {
   if (tipo == 'movie') {
-    //console.log('peli');
     fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
-     // console.log(data);
       mostrarPeli(data);
     })
 
-    
   } else {
-    //console.log('serie');
     fetch(API_URL + mediaType + '/' + id + API_KEY).then(res => res.json()).then(data => {
-      console.log(data);
       mostrarSerie(data);
 
     })
@@ -37,7 +28,6 @@ function tipoMedia(tipo) {
 }
 
 function mostrarPeli(data) {
-  //console.log(data);
   detalle.innerHTML = ``;
   const elemento = document.createElement('div');
   elemento.classList.add('contenido');
@@ -82,31 +72,22 @@ function mostrarSerie(data){
 }
 
 function getGeneros(gen) {
-  //console.log(gen);
   let generos = gen.map(gen => { return gen.name })
- //console.log(generos);
   return generos;
 }
 
 function getDuracion(minutos) {
-  //console.log(minutos);
   let horas = Math.floor(minutos / 60);
   minutos = minutos % 60;
   return horas + "h" + " " + minutos + "m"
 }
 
 fetch(API_URL+mediaType+'/'+id+'/credits'+API_KEY).then(res => res.json()).then(dataCast => {
-      //console.log(dataCast);
       mostrarReparto(dataCast.cast);
 })
 
 function mostrarReparto(dataCast){
-  console.log(dataCast);
-
   for (let i = 0; i < dataCast.length; i++) {
-    //const personaje = dataCast[i].character;
-    //const actor = dataCast[i].name;
-    //const imagen = dataCast[i].profile_path;
     let divReparto = document.createElement('div');
     divReparto.classList.add('reparto-tarjeta');
     divReparto.innerHTML = `
@@ -119,9 +100,7 @@ function mostrarReparto(dataCast){
 }
 
 fetch(API_URL+mediaType+'/'+id+'/videos'+API_KEY).then(res => res.json()).then(dataTrailer =>{
-
   let trailerKey = dataTrailer.results.find(dataTrailer => dataTrailer.type === 'Trailer')
-  //console.log(trailerKey.key)
   let divTrailer = document.createElement('div');
   divTrailer.classList.add('trailer');
   divTrailer.innerHTML = `

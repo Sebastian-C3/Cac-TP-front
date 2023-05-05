@@ -13,10 +13,8 @@ a {
 }
 
 body {
-  /* background: #1D1D1F; */
   background-image: linear-gradient( 86.3deg,  rgba(0,119,182,1) 3.6%, rgba(8,24,68,1) 87.6% );
   color: #fff;
-  /*font-family: 'Montserrat', sans-serif;*/
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,7 +36,6 @@ main {
 
 .header {
   width: 100%;
-  /* background-color: black; */
   background-image: radial-gradient( circle 975px at 2.6% 48.3%,  rgba(0,8,120,1) 0%, rgba(95,184,224,1) 99.7% );
   padding: 1em;
   display: flex;
@@ -104,7 +101,6 @@ main {
   display: flex;
   scrollbar-width: thin;
   scrollbar-color: #fff hwb(0 100% 0% / 0);
-  /* box-shadow: inset -2em 0em 1em #f100ff6b; */
   z-index: 50;
   margin-bottom: 2.5em;
 }
@@ -230,10 +226,7 @@ display: block;
 padding: 0 1em;
 } */
 .descripcion .p {
-  /* display: block; */
-  /* padding: 0.5em 0em 0.5em 1em; */
   margin-top: 0.5em;
-    
 }
 
 /*----------Reparto----------*/
@@ -308,7 +301,6 @@ section[id] {
 
 .form{
   width: 100%;
-
 }
 
 .buscador{
@@ -335,8 +327,6 @@ section[id] {
   display: flex;
   margin: 0.5em 0; 
 }
-
-
 
 .radio-peli{
   margin-left: 0.5em;
@@ -388,7 +378,6 @@ section[id] {
   text-overflow: ellipsis;
   font-size: 0.9em;
 }
-
 
 /*-----footer----*/
 
@@ -500,7 +489,7 @@ section[id] {
 
   /* .duracion{
   padding: 0.5em;
-} */
+  } */
  .contenido .descripcion {
 
     grid-area: descripcion;
