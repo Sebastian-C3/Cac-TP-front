@@ -11,7 +11,6 @@ const API_TV = 'tv';
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
     let terminoBusc = buscador.value;
 
     if (terminoBusc) {
@@ -32,60 +31,34 @@ form.addEventListener('submit', (e) => {
 function mostrarBusqueda(data, url) {
     let pagAct = data.page
     let cantPag = data.total_pages;
-
-    mostrarResultados(data.results)
-    if (cantPag > 1) {
-        for (let index = pagAct + 1; index <= cantPag; index++) {
-            let divBuscador = document.createElement('div');
-            divBuscador.setAttribute('id', 'resultado-tarjetas')
-            resultados.append(divBuscador)
-            fetch(url + '&page=' + index).then(res => res.json()).then(data => {
-                data.results.forEach(element => {
-                    let { id, title, name, media_type, poster_path, overview } = element
-                    let elemntoBusc = document.createElement('div');
-                    elemntoBusc.classList.add('resultado-tarjeta');
-                    elemntoBusc.innerHTML = `
-                        <div class="resultado-img">
-                            <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC, poster_path)}" alt="${tipoTitulo(title, name)}" ></a>
-                        </div>
-                        <div>
-                            <div class="resultado-titulo">
-                                <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}">${tipoTitulo(title, name)}</a>
-                            </div>
-                            <div class="resultado-descrip">
-                                <p>${overview}</p>
-                            </div>
-                        </div> 
-                    `
-                    divBuscador.append(elemntoBusc);
-                });
-            })
-        }
-    }
-}
-
-function mostrarResultados(data) {
     resultados.innerHTML = ``;
 
-    data.forEach(element => {
-        let { id, title, name, media_type, poster_path, overview } = element
-        let elemntoBusc = document.createElement('div');
-        elemntoBusc.classList.add('resultado-tarjeta');
-        elemntoBusc.innerHTML = `
-                <div class="resultado-img">
-                    <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC, poster_path)}" alt="${tipoTitulo(title, name)}" ></a>
-                </div>
-                <div>
-                    <div class="resultado-titulo">
-                        <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}">${tipoTitulo(title, name)}</a>
+    for (let index = pagAct; index <= cantPag; index++) {
+        let divBuscador = document.createElement('div');
+        divBuscador.setAttribute('id', 'resultado-tarjetas')
+        resultados.appendChild(divBuscador)
+        fetch(url + '&page=' + index).then(res => res.json()).then(data => {
+            data.results.forEach(element => {
+                let { id, title, name, media_type, poster_path, overview } = element
+                let elemntoBusc = document.createElement('div');
+                elemntoBusc.classList.add('resultado-tarjeta');
+                elemntoBusc.innerHTML = `
+                    <div class="resultado-img">
+                        <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}"><img src="${imagenTarjeta(IMG_BUSC, poster_path)}" alt="${tipoTitulo(title, name)}" ></a>
                     </div>
-                    <div class="resultado-descrip">
-                        <p>${overview}</p>
-                    </div>
-                </div> 
-            `
-        resultados.append(elemntoBusc);
-    });
+                    <div>
+                        <div class="resultado-titulo">
+                            <a href="detalle.html?type=${tipoMedia(title, name)}&id=${id}">${tipoTitulo(title, name)}</a>
+                        </div>
+                        <div class="resultado-descrip">
+                            <p>${overview}</p>
+                        </div>
+                    </div> 
+                `
+                divBuscador.appendChild(elemntoBusc);
+            });
+        })
+    }
 }
 
 function tipoTitulo(title, name) {
