@@ -410,7 +410,7 @@ section[id] {
 .formulario-btn-coneteiner{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1em;
+  gap: 2em;
   justify-items: center;
 }
 .formulario-btn{
@@ -432,11 +432,9 @@ section[id] {
 }
 .formulario-btn-limpiar{
   justify-self: end;
-  margin-right: 2em;
 }
 .formulario-btn-enviar{
   justify-self: start;
-  margin-left: 2em;
 }
 .formulario-mensaje{
   background: #f66060;
@@ -629,4 +627,13 @@ section[id] {
     
     align-self: center;
   }   
+}
+
+@media (max-width: 386px){
+  main{
+    margin-top: 10em;
+  }
+  .formulario-btn-coneteiner{
+    gap: 1em; 
+  }
 }
