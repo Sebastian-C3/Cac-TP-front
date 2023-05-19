@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1095b3c2ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <title>Pelis para todos</title>
+</head>
+<body>
+
+    <header class="header" id="header">  </header>
+
+    <main>
+
+        <section class="seccion-formulario">
+
+            <div class="formulario-conteiner">
+                <h3 class="formulario-titulo">Contacto</h3>
+
+                <p class="formulario-texto">Si tenes consultas o recomendaciones escribinos.</p>
+
+                <form id="formulario-contacto" class="formulario-contacto" action="https://formspree.io/f/moqzbyrp" method="POST">
+                    <div class="formulario-bloque" id="grupo-nombre">
+                        <label class="formulario-label" for="nombre">Nombre y Apellido</label>
+                        <div class="formulario-grupo-input">
+                            <input class="formulario-input" type="text" name="nombre" id="nombre" placeholder="Ingresá tu nombre y apellido">
+                            <i class="formulario-validacion-estado fa-regular fa-circle-xmark fa-lg"></i>
+                        </div>
+                        <p class="formulario-input-error">Nombre y apellido tiene que ser de 4 a 16 dígitos y solo puede llevar letras y espacios, sin caracteres especiales.</p>
+                    </div>
+
+                    <div class="formulario-bloque" id="grupo-correo">
+                        <label class="formulario-label" for="correo">Correo Electrónico</label>
+                        <div class="formulario-grupo-input">
+                            <input class="formulario-input" type="email" name="correo" id="correo" placeholder="Ingresá tu correo electrónico">
+                            <i class="formulario-validacion-estado fa-regular fa-circle-xmark fa-lg"></i>
+                        </div>
+                        <p class="formulario-input-error">El correo solo puede contener letras, numeros, puntos, guiones y guion bajo.</p>
+                    </div>  
+                    
+                    <div class="formulario-bloque" id="grupo-telefono">
+                        <label class="formulario-label" for="telefono">Teléfono</label>
+                        <div class="formulario-grupo-input">
+                            <input class="formulario-input" type="tel" name="telefono" id="telefono" placeholder="Ingresá tu teléfono">
+                            <i class="formulario-validacion-estado fa-regular fa-circle-xmark fa-lg"></i>
+                        </div>
+                        <p class="formulario-input-error">El teléfono tiene solo puede contener numeros y de 8 a 12 dígitos.</p>
+                    </div>
+
+                    <div class="formulario-bloque" id="grupo-mensaje">
+                        <label class="formulario-label" for="mensaje">Mensaje</label>
+                        <textarea class="formulario-input" name="mensaje" id="mensaje" rows="10" placeholder="Escribí tu sugerencia o comentario" ></textarea>
+                        <p class="formulario-input-error">El mensaje no puede estar vacio.</p>
+                    </div>
+
+                    <div class="formulario-mensaje" id="formulario-mensaje">
+                        <p><i class="fa-solid fa-triangle-exclamation fa-xl"></i> <b>Error:</b> Por favor rellena el formulario correctamente</p>
+                    </div>
+
+                    <div class="formulario-btn-coneteiner">
+                        <button type="reset" class="formulario-btn formulario-btn-limpiar">Limpiar</button>
+                        <button type="submit" class="formulario-btn formulario-btn-enviar">Enviar</button>
+                        <p class="formulario-mensaje-exito" id="formulario-mensaje-exito">Formulario enviado exitosamente!</p>
+                    </div>  
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer class="footer" id="footer"> </footer>
+
+
+    <script src="js/app.js"></script> 
+    <script src="js/contacto.js"></script>   
+</body>
+</html>

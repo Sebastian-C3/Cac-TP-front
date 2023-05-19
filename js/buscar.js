@@ -1,4 +1,4 @@
-const form = document.getElementById('form');
+const form = document.getElementById('form-buscador');
 const buscador = document.getElementById('buscador');
 const resultados = document.getElementById('resultados');
 const peliculas = document.getElementById('peliculas')
@@ -79,11 +79,9 @@ function tipoMedia(title, name) {
 
 function imagenTarjeta(img, poster_path) {
     let desconocido = "img/tarjeta.png";
-    if (poster_path === null) {
-        return desconocido
-    } else if (!poster_path) {
+    if (poster_path === null || !poster_path) {
         return desconocido
     } else {
         return img + poster_path
     }
-}
+  }
