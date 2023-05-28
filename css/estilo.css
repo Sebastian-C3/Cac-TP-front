@@ -84,7 +84,7 @@ main {
   font-weight: 500;
   font-size: 2em;
 }
-.carrusel-container {
+.carrusel-conteiner {
   position: relative;
   width: 100%;
   overflow-y: hidden;
@@ -138,10 +138,10 @@ main {
 
 /*----------- scrollbar -----------*/
 
-.carrusel-container::-webkit-scrollbar {
+.carrusel-conteiner::-webkit-scrollbar {
   height: 10px;
 }
-.carrusel-container::-webkit-scrollbar-thumb {
+.carrusel-conteiner::-webkit-scrollbar-thumb {
   background-color: #fff;
   border-radius: 100vmax;
 }
