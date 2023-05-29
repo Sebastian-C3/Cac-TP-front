@@ -25,9 +25,29 @@ document.getElementById("header").innerHTML = `
 
 const button = document.querySelector('.button')
 const nav    = document.querySelector('.nav')
+const main   = document.querySelector('#main')
+const footer   = document.querySelector('#footer')
 
 button.addEventListener('click',()=>{
   nav.classList.toggle('activo')
+})
+
+nav.addEventListener('click', e =>{
+    if(e.target.id != nav){
+        nav.classList.remove('activo')
+    }
+})
+
+main.addEventListener('click', e=>{
+    if(e.target.id != main){
+        nav.classList.remove('activo')
+    }
+})
+
+footer.addEventListener('click', e=>{
+    if(e.target.id != footer){
+        nav.classList.remove('activo')
+    }
 })
 
 /*----------footer----------*/
