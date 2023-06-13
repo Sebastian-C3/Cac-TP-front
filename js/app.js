@@ -13,8 +13,8 @@ document.getElementById("header").innerHTML = `
     <nav class="nav">
         <ul class="ul">
             <li class="li"><a href="index.html" class="a">Inicio</a></li>
-            <li class="li"><a href="index.html#series" class="a">Series</a></li>
-            <li class="li"><a href="index.html#peliculas" class="a">Peliculas</a></li>
+            <li class="li"><a href="https://pelisparatodos.netlify.app/index.html#series" class="a">Series</a></li>
+            <li class="li"><a href="https://pelisparatodos.netlify.app/index.html#peliculas" class="a">Peliculas</a></li>
             <li class="li"><a href="buscador.html" class="a">Buscador</a></li>
             <li class="li"><a href="contacto.html" class="a">Contacto</a></li>
         </ul>
