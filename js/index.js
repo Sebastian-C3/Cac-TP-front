@@ -5,49 +5,65 @@ const API_TV_POP = API_URL + 'tv/top_rated' + API_KEY;
 const IMG_LISTA = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2';
 const API_TV_TREND = API_URL + 'trending/tv/day' + API_KEY;
 const API_PELI_EST = API_URL + 'movie/upcoming' + API_KEY;
-const seccion = document.querySelector('.section');
+const SECCION_PEL = document.querySelector('.peliculas');
+const SECCION_TV = document.querySelector('.series');
 
-const TITULOS = {
-  peli1 : 'Películas - Novedades en cartelera',
-  peli2 : 'Películas - Tendencias',
-  serie1: 'Series - Mejor puntuado',
-  serie2: 'Series - Tendencias'
-}
-
+const TITULOS = [
+  'Películas - Novedades en cartelera',
+  'Películas - Tendencias',
+  'Series - Mejor puntuado',
+  'Series - Tendencias'
+]
 const getListas = async() => {
   try {
-      const respPop = await fetch(API_PELI_POP);
-      const resPeliPop = await respPop.json();
-      mostrarLista(resPeliPop.results, TITULOS.peli1, 1)
+      let respPop = await fetch(API_PELI_POP);
+      let resPeliPop = await respPop.json();
+     
+      let respEst = await fetch(API_PELI_EST);
+      let resPeliEst = await respEst.json();
 
-      const respEst = await fetch(API_PELI_EST);
-      const resPeliEst = await respEst.json();
-      mostrarLista(resPeliEst.results, TITULOS.peli2, 2)
+      let resultadosPel = [resPeliPop.results, resPeliEst.results];
+      
+      mostrarLista2(resultadosPel,TITULOS)
 
-      const restPop = await fetch(API_TV_POP);
-      const resTvPop = await restPop.json();
-      mostrarLista(resTvPop.results, TITULOS.serie1, 3);
+      let restPop = await fetch(API_TV_POP);
+      let resTvPop = await restPop.json();
+     
+      let restEst = await fetch(API_TV_TREND);
+      let resTvEst = await restEst.json();
+     
+      let resultadosTV = [resTvPop.results, resTvEst.results];
 
-      const restEst = await fetch(API_TV_TREND);
-      const resTvEst = await restEst.json();
-      mostrarLista(resTvEst.results, TITULOS.serie2, 4);
+      mostrarLista3(resultadosTV, TITULOS)
   } catch (error) {
       console.warn(error);
   }
 }
 
-getListas()
+getListas();
 
-function mostrarLista(resultados, titulo, n){
+function mostrarLista2(resultados, titulos){
+  for (let index = 0; index < resultados.length; index++) {
+    mostrarLista(resultados[index],titulos[index],index+1,SECCION_PEL)   
+  }
+}
+
+function mostrarLista3(resultadosTv, titulosTV){
+  for (let index = 0; index < resultadosTv.length; index++) {
+    mostrarLista(resultadosTv[index],titulosTV[index+2],index+3,SECCION_TV)
+  }
+}
+
+function mostrarLista(resultados, titulo, n, tipoSec){
   let conteinerDiv = document.createElement('div');
   conteinerDiv.classList.add('subtitulo')
   conteinerDiv.setAttribute('id', `subtitulo-${n}`)
-  seccion.appendChild(conteinerDiv);
+  tipoSec.append(conteinerDiv);
   document.querySelector(`#subtitulo-${n}`).innerHTML = `<h3>${titulo}</h3>`;
   let carruselDiv = document.createElement('div');
   carruselDiv.classList.add ('carrusel-conteiner');
   carruselDiv.innerHTML = ``;
-  seccion.appendChild(carruselDiv);
+  tipoSec.append(carruselDiv);
   resultados.forEach(element => {
   let { title, name, poster_path, id, overview} = element;
   let listaElementEst = document.createElement('div');
